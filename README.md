@@ -57,7 +57,8 @@ assert(totalRevenue === Some(199 * 5))
 
 ## Does this really work?
 
-STILTS is in production at Clinkle. For our tech stack (MySQL 5.5, JDBC,
+STILTS is in production at Clinkle. For our tech stack (MySQL 5.5/5.6, JDBC,
 Scala 2.11) and our use cases it works great. Features have been added
 as we've needed them. If there's something missing that you want, open
-an issue or submit a pull request. Happy forking.
+an issue or submit a pull request. It can potentially be adapted to other SQL
+databases. Happy forking.
