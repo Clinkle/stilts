@@ -3,7 +3,7 @@ package com.clinkle.sql
 import Node._
 import com.clinkle.sql.Expr.OrderByable
 
-trait Select extends Node { parent =>
+trait SelectTrait extends Node { parent =>
   class SELECT[T](exprs: Expr[_]*) {
     trait From extends Node { parent =>
       class FROM private (n: Node) extends Composite(parent, n"FROM", n)
@@ -131,6 +131,6 @@ trait Select extends Node { parent =>
   }
 }
 
-object SELECT extends Composite(n"SELECT") with Select { parent =>
-  object DISTINCT extends Composite(parent, n"DISTINCT") with Select
+object SELECT extends Composite(n"SELECT") with SelectTrait { parent =>
+  object DISTINCT extends Composite(parent, n"DISTINCT") with SelectTrait
 }
