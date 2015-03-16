@@ -3,7 +3,7 @@ STILTS stands for ***SQL that is largely type safe***.
 
 STILTS embeds *real* SQL syntax into Scala that is fully integrated into
 Scala's type system. If it compiles, you can expect to avoid the runtime
-errors (and security concerns) that plage string based querying.
+errors (and security concerns) that plague string based querying.
 
 STILTS is *not* an ORM. ORMs aim to abstract away the underlying database
 schema and hide queries behind host language syntax. This can make it hard
