@@ -30,9 +30,13 @@ trait UpdateExec extends Node { query =>
   }
 }
 
-trait InsertExec extends Node { query =>
+trait OnDuplicateKeyUpdateExec extends Node { query =>
+  // For normal inserts returns the number of rows inserted.
+  // When used with `ON DUPLICATE KEY UPDATE` returns 1 if a new row was inserted and 2 if the row was updated.
   def exec(implicit executor: Executor): Int = executor.executeUpdate(query)
+}
 
+trait InsertExec extends OnDuplicateKeyUpdateExec { query =>
   def only(implicit executor: Executor): Int = {
     val inserted = exec
     assert(inserted == 1, s"Query ${ query.serial } inserted fewer or more than one row.")

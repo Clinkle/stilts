@@ -22,3 +22,5 @@ dependencies {
   testCompile group: 'org.scalatest', name: 'scalatest_2.11', version: '2.2.1'
   testCompile group: 'mysql', name: 'mysql-connector-java', version: '5.1.24'
 }
+
+jar.archiveName = 'clinkle-stilts.jar'

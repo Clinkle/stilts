@@ -51,6 +51,6 @@ object InsertNS {
   }
 
   trait OnDuplicateKeyUpdate { parent: Node =>
-    case class ON_DUPLICATE_KEY_UPDATE(ns: Assoc*) extends Composite(parent, n"ON DUPLICATE KEY UPDATE", Composite(", ", ns:_*)) with InsertExec
+    case class ON_DUPLICATE_KEY_UPDATE(ns: Assoc*) extends Composite(parent, n"ON DUPLICATE KEY UPDATE", Composite(", ", ns:_*)) with OnDuplicateKeyUpdateExec
   }
 }
