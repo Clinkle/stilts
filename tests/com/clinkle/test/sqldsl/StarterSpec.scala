@@ -3,7 +3,7 @@ package com.clinkle.test.sqldsl
 import java.sql.{PreparedStatement, ResultSet, DriverManager}
 
 import com.clinkle.sql.CREATE.{utf8mb4_unicode_ci, utf8mb4}
-import com.clinkle.sql.{UPDATE, Executor, USE, Database, Expr, INSERT, DROP, CREATE, SELECT, Table}
+import com.clinkle.sql.{ALTER, UPDATE, Executor, USE, Database, Expr, INSERT, DROP, CREATE, SELECT, Table}
 import org.scalatest.{BeforeAndAfterAll, FunSpec}
 
 class StarterSpec extends FunSpec with BeforeAndAfterAll {
@@ -32,6 +32,7 @@ class StarterSpec extends FunSpec with BeforeAndAfterAll {
 
   object Tab2 extends Table {
     val col1 = INT[Count].REFERENCES(Tab.col1)
+    val col2 = SMALLINT
   }
 
   object prices extends Table {
@@ -77,6 +78,14 @@ class StarterSpec extends FunSpec with BeforeAndAfterAll {
 
       val totalRevenue = SELECT(SUM(sales.number_sold * prices.item_price)).FROM(sales).INNER_JOIN(prices).ON(sales.item_id === prices.item_id).only
       assert(totalRevenue === Some(199 * 5))
+    }
+  }
+
+  describe("Alter table") {
+    it("works") {
+      ALTER.TABLE(Tab2).DROP.COLUMN(Tab2.col2).exec
+      ALTER.TABLE(Tab2).ADD.COLUMN(Tab2.col2).exec
+      ALTER.TABLE(Tab2).MODIFY.COLUMN(Tab2.col2).exec
     }
   }
 }
