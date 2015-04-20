@@ -33,6 +33,7 @@ class StarterSpec extends FunSpec with BeforeAndAfterAll {
   object Tab2 extends Table {
     val col1 = INT[Count].REFERENCES(Tab.col1)
     val col2 = SMALLINT
+    val col3 = VARCHAR(2)
   }
 
   object prices extends Table {
@@ -83,9 +84,10 @@ class StarterSpec extends FunSpec with BeforeAndAfterAll {
 
   describe("Alter table") {
     it("works") {
-      ALTER.TABLE(Tab2).DROP.COLUMN(Tab2.col2).exec
-      ALTER.TABLE(Tab2).ADD.COLUMN(Tab2.col2).exec
-      ALTER.TABLE(Tab2).MODIFY.COLUMN(Tab2.col2).exec
+      ALTER.TABLE(Tab2).DROP.COLUMN(Tab2.col1).print.exec
+      ALTER.TABLE(Tab2).DROP.COLUMN(Tab2.col2).print.exec
+      ALTER.TABLE(Tab2).ADD.COLUMN(Tab2.col2, Tab2.col1).print.exec
+      ALTER.TABLE(Tab2).MODIFY.COLUMN(Tab2.col2).print.exec
     }
   }
 }

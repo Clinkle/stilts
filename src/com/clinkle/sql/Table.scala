@@ -23,6 +23,8 @@ trait Table extends Quoted with Comparable[Table] { table =>
   private val indexes: mutable.MutableList[String] = mutable.MutableList()
   private val foreignReferences: mutable.MutableList[Table] = mutable.MutableList()
 
+  def column[T](name: String): this.Column[T] = new Column[T](name, "")
+
   class Column[T: Primitive](val name: String, val decl: String) extends Expr[T](n"${ table.sql }.`$name`") { column =>
     val parent = table
     columns.update(name, column)
