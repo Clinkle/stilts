@@ -25,7 +25,7 @@ object UpdateNS {
   }
 
   trait Set { parent: Node =>
-    case class SET(ns: Assoc*) extends Composite(parent, n"SET", Composite(", ", ns:_*)) with Where with OrderBy with Limit with UpdateExec
+    case class SET(n1: Assoc, ns: Assoc*) extends Composite(parent, n"SET", Composite(", ", (n1 +: ns):_*)) with Where with OrderBy with Limit with UpdateExec
   }
 
   trait Where { parent: Node =>
